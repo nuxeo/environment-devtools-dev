@@ -36,6 +36,8 @@ nexus:
 jenkins:
   Master:
     AdminPassword: "{{ .Parameters.adminUser.password }}"
+  ServiceLabels: 
+    jenkins.io/kind: "jenkins"
 
 PipelineSecrets:
     GitCreds: https://{{ .Parameters.pipelineUser.username }}:{{ .Parameters.pipelineUser.token }}@{{ trimPrefix "https://" .Requirements.cluster.gitServer | default "https://github.com" |  }}

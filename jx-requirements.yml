@@ -1,35 +1,86 @@
+autoUpdate:
+  enabled: false
+  schedule: ""
+bootConfigURL: https://github.com/pfouh/jenkins-x-boot-config
 cluster:
-  clusterName: ""
-  environmentGitOwner: ""
-  environmentGitPublic: false
-  project: ""
+  clusterName: jx-oss-staging
+  devEnvApprovers:
+  - nxmatic
+  - jcarsique
+  - atimic
+  environmentGitOwner: nuxeo
+  environmentGitPublic: true
+  gitKind: github
+  gitName: github
+  gitServer: https://github.com
+  namespace: jx
+  project: build-jx-prod
   provider: gke
-  zone: ""
-gitops: true
+  registry: gcr.io
+  vaultName: jx-oss-staging-l2it
+  zone: us-east1-b
 environments:
-- key: dev
-- key: staging
-- key: production
+- ingress:
+    cloud_dns_secret_name: external-dns-gcp-sa
+    domain: jx.jx-oss-staging.build-jx-prod.build.nuxeo.com
+    externalDNS: true
+    namespaceSubDomain: .
+    tls:
+      email: devtools+jx-oss-staging-l2it-bot@nuxeo.com
+      enabled: true
+      production: true
+  key: dev
+- ingress:
+    domain: ""
+    externalDNS: false
+    namespaceSubDomain: ""
+    tls:
+      email: ""
+      enabled: false
+      production: false
+  key: staging
+- ingress:
+    domain: ""
+    externalDNS: false
+    namespaceSubDomain: ""
+    tls:
+      email: ""
+      enabled: false
+      production: false
+  key: production
+gitops: true
 ingress:
-  domain: ""
-  externalDNS: false
+  cloud_dns_secret_name: external-dns-gcp-sa
+  domain: l2it.jx-oss-staging.build-jx-prod.build.nuxeo.com
+  externalDNS: true
+  namespaceSubDomain: .
   tls:
-    email: ""
-    enabled: false
-    production: false
+    email: devtools+jx-oss-staging-l2it-bot@nuxeo.com
+    enabled: true
+    production: true
 kaniko: true
-secretStorage: local
+repository: nexus
+secretStorage: vault
 storage:
+  backup:
+    enabled: true
+    url: gs://jx-oss-staging-l2it-backup
   logs:
-    enabled: false
-    url: ""
+    enabled: true
+    url: gs://jx-oss-staging-l2it-logs
   reports:
-    enabled: false
-    url: ""
+    enabled: true
+    url: gs://jx-oss-staging-l2it-reports
   repository:
-    enabled: false
-    url: ""
+    enabled: true
+    url: gs://jx-oss-staging-l2it-repository
+vault:
+  disableURLDiscovery: true
+  name: jx-oss-staging-l2it
+velero:
+  schedule: ""
+  ttl: ""
 versionStream:
-  ref: "master"
+  ref: v1.0.311
   url: https://github.com/jenkins-x/jenkins-x-versions.git
 webhook: prow
