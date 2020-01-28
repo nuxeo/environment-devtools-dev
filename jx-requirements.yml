@@ -1,7 +1,7 @@
 autoUpdate:
   enabled: false
   schedule: ""
-bootConfigURL: https://github.com/jenkins-x/jenkins-x-boot-config
+bootConfigURL: https://github.com/nuxeo/jenkins-x-boot-config
 cluster:
   clusterName: jx-oss-staging
   devEnvApprovers:
@@ -30,7 +30,7 @@ environments:
       enabled: true
       production: true
   key: dev
-  repository: environment-jx-oss-staging-jx-dev
+  repository: jx-oss-staging-jx-env-dev
 - ingress:
     domain: ""
     externalDNS: false
@@ -40,8 +40,8 @@ environments:
       enabled: false
       production: false
   key: staging
-  repository: environment-jx-oss-staging-jx-staging
-- ingress:
+  repository: jx-oss-staging-jx-env-staging
+- ingress
     domain: ""
     externalDNS: false
     namespaceSubDomain: ""
@@ -50,7 +50,7 @@ environments:
       enabled: false
       production: false
   key: production
-  repository: environment-jx-oss-staging-jx-production
+  repository: jx-oss-staging-jx-env-production
 gitops: true
 ingress:
   cloud_dns_secret_name: external-dns-gcp-sa
