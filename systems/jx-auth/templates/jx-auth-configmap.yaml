@@ -1,0 +1,23 @@
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: jx-auth-config
+  labels:
+    jenkins.io/created-by: jx
+    jenkins.io/config-type: auth
+data:
+  gitAuth.yaml: |
+    currentserver: "https://github.com"
+    defaultusername: "devtools-jx-bot"
+    pipelineserver: "https://github.com"
+    pipelineusername: "devtools-jx-bot"
+    servers:
+    - currentuser: "devtools-jx-bot"
+      kind: "github"
+      name: "github"
+      url: "https://github.com"
+      users:
+      - apitoken: "vault:jx-oss-staging/pipelineUser:token"
+        bearertoken: ""
+        username: "devtools-jx-bot"

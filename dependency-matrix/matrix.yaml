@@ -1,0 +1,7 @@
+dependencies:
+- host: github.com
+  owner: pfouh
+  repo: docker-nexus3
+  url: https://github.com/pfouh/docker-nexus3
+  version: 0.0.17
+  versionURL: https://github.com/pfouh/docker-nexus3/releases/tag/v0.0.17

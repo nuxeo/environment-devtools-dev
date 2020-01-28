@@ -1,0 +1,85 @@
+autoUpdate:
+  enabled: false
+  schedule: ""
+bootConfigURL: https://github.com/jenkins-x/jenkins-x-boot-config
+cluster:
+  clusterName: jx-oss-staging
+  devEnvApprovers:
+  - nxmatic
+  - jcarsique
+  - atimic
+  environmentGitOwner: nuxeo
+  environmentGitPublic: true
+  gitKind: github
+  gitName: github
+  gitServer: https://github.com
+  namespace: jx
+  project: build-jx-prod
+  provider: gke
+  registry: gcr.io
+  vaultName: jx-oss-staging-jx
+  zone: us-east1-b
+environments:
+- ingress:
+    cloud_dns_secret_name: external-dns-gcp-sa
+    domain: jx.jx-oss-staging.build-jx-prod.build.nuxeo.com
+    externalDNS: true
+    namespaceSubDomain: .
+    tls:
+      email: devtools+jx-oss-staging-jx-bot@nuxeo.com
+      enabled: true
+      production: true
+  key: dev
+- ingress:
+    domain: ""
+    externalDNS: false
+    namespaceSubDomain: ""
+    tls:
+      email: ""
+      enabled: false
+      production: false
+  key: staging
+- ingress:
+    domain: ""
+    externalDNS: false
+    namespaceSubDomain: ""
+    tls:
+      email: ""
+      enabled: false
+      production: false
+  key: production
+gitops: true
+ingress:
+  cloud_dns_secret_name: external-dns-gcp-sa
+  domain: jx.jx-oss-staging.build-jx-prod.build.nuxeo.com
+  externalDNS: true
+  namespaceSubDomain: .
+  tls:
+    email: devtools+jx-oss-staging-jx-bot@nuxeo.com
+    enabled: true
+    production: true
+kaniko: true
+repository: nexus
+secretStorage: vault
+storage:
+  backup:
+    enabled: true
+    url: gs://jx-oss-staging-jx-backup
+  logs:
+    enabled: true
+    url: gs://jx-oss-staging-jx-logs
+  reports:
+    enabled: true
+    url: gs://jx-oss-staging-jx-reports
+  repository:
+    enabled: true
+    url: gs://jx-oss-staging-jx-repository
+vault:
+  name: jx-oss-staging-jx
+velero:
+  schedule: ""
+  ttl: ""
+versionStream:
+  ref: v1.0.311
+  url: https://github.com/jenkins-x/jenkins-x-versions.git
+webhook: prow

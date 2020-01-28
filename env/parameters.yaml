@@ -1,0 +1,10 @@
+adminUser:
+  password: vault:jx-oss-staging/adminUser:password
+  username: admin
+enableDocker: false
+pipelineUser:
+  email: devtools+jx-oss-staging-jx-bot@nuxeo.com
+  token: vault:jx-oss-staging/pipelineUser:token
+  username: devtools-jx-bot
+prow:
+  hmacToken: vault:jx-oss-staging/prow:hmacToken
